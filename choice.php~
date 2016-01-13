@@ -65,8 +65,7 @@ div div div{
 	<div id="categories">
 	<?php 
 	session_start();
-	if(!($u= $_SESSION["user"]))
-		header("location:index.php");
+	$u= $_SESSION["user"];
 	$cat = $_GET['cat'];
 	//echo $cat;
 	$servername = "localhost";

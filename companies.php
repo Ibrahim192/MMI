@@ -69,24 +69,23 @@ if (isset($_GET['cid']))
 	<input type="hidden" name = 'cid' value="<?php echo $cid; ?>" />
 Sub cat:	 
 <select name="from">
- <?php
-	$res = mysql_query("select s.SubCat_id from SubCat s, Cat_Comp c where $cid = c.CompId and c.scat_id = s.SubCat_id");
-$count = mysql_num_rows($res);
-for($i=0; $i<$count; $i++)
-{
-
-	$data = mysql_fetch_row($res);
-	echo $data[0];
+	<?php
+		$res = mysql_query("select s.SubCat_id from SubCat s, Cat_Comp c where $cid = c.CompId and c.scat_id = s.SubCat_id");
+		$count = mysql_num_rows($res);
+		for($i=0; $i<$count; $i++)
+		{
+			$data = mysql_fetch_row($res);
+			echo $data[0];
 	?> 
-<option  name="<?php echo $data[0]?>" value = "<?php echo $data[0] ?>" > <?php echo $data[0] ?> </option>
-
-<?php } ?>
+	<option  name="<?php echo $data[0]?>" value = "<?php echo $data[0] ?>" > <?php echo $data[0] ?> </option>
+	<?php } ?>
 </select>
 <br/>
 <br/>
-<textarea name="msg"></textarea>
+<textarea name="msg" maxlength=150></textarea>
+	<br/>
+Priority&nbsp;&nbsp;&nbsp;&nbsp;low <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=0 />&nbsp;&nbsp;&nbsp;&nbsp;medium <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=1 />&nbsp;&nbsp;&nbsp;&nbsp;high <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=2 />
 <br/>
-
 <input type="submit" value = "Send Message!" />
 </form>
 

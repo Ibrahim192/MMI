@@ -36,14 +36,14 @@ font-family:sans-serif;
 <?php
 	$cid = $_POST['cid'];
 	$catid = $_POST['from'];
-	//$pri = $_POST['pri'];
+	$pri = $_POST['pri'];
 	$msg=$_POST['msg'];
 	$username = "root";
 	$password = "";
 	$servername = "localhost";
 	$conn = mysql_connect($servername, $username, $password);
 		mysql_select_db('Mmi');
-
+	$res=mysql_query("insert into Notification(CatId,Message,Priority,CompId) values('$catid','$msg','$pri','$cid')");
 	$res1 = mysql_query("Select s.PhoneNo from Subscribers s where '$catid' = s.CatId and '$cid'= s.CompId");
 	
 	$count=mysql_num_rows($res1);
@@ -56,13 +56,9 @@ font-family:sans-serif;
 <?php 
 for($i=0;$i<$count;$i++)
 {
+	$data = mysql_fetch_row($res1);
 ?>
-
-<?php 
-$data = mysql_fetch_row($res1);
-$num[]=$data[0];
-?>
-<input type="hidden" name="To[]" value="<?php echo($num[$i])?>"></input
+<input type="hidden" name="To[]" value="<?php echo($data[0])?>"></input
 
 
 <?php

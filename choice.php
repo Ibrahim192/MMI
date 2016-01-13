@@ -5,12 +5,9 @@
 <style type="text/css">
 
 body {
-//background-color:#9CC3EC;
-background-image: url('bg.jpg');
-background-size: 1376px 768px;
-font-family:sans-serif;
+	background-size: 1376px 768px;
+	font-family:sans-serif;
 }
-
 
 #Top
 {
@@ -58,8 +55,6 @@ div div div{
 </head>
 
 <body>
-
-
 	<div id="Top">
 		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO Mmi EXOTEL!</strong></span></div>
 	</div>
@@ -68,9 +63,7 @@ div div div{
 	<div id="categories">
 	<?php 
 	session_start();
-		$u= $_SESSION["user"];
-
-	
+	$u= $_SESSION["user"];
 	$cat = $_GET['cat'];
 	//echo $cat;
 	$servername = "localhost";
@@ -82,7 +75,8 @@ div div div{
 	$res=mysql_query("Select * from SubCat where ParCatId='$cat'");
 	
 	$count = mysql_num_rows($res);
-	for($i=0; $i<$count; $i++) {
+	for($i=0; $i<$count; $i++)
+	{
 		?>
 		<div>
 			<?php 
@@ -97,26 +91,25 @@ div div div{
 			<?php
 			for($j=0;$j<$cnt2;$j++)
 			{
-				?>
-				 <?php
 				$rowd=mysql_fetch_row($res2);
 				echo "<input type=checkbox name=Company[] value=".$rowd[1].">&nbsp;".$rowd[0]."       ";
-			?><span id="extra-stuff">&nbsp;&nbsp;&nbsp;&nbsp;low <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=0 />
+			?>
+			<span id="extra-stuff">&nbsp;&nbsp;&nbsp;&nbsp;low <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=0 />
 			&nbsp;&nbsp;&nbsp;&nbsp;medium <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=1 />
 			&nbsp;&nbsp;&nbsp;&nbsp;high <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=2 /> 
 
 			&nbsp;&nbsp;&nbsp;&nbsp;Enter limit: <input style="width:50px" type="number" name="<?php echo $rowd[1]."limit"?>" />
 			<br/>
-				</span><br/>
-				<?php
-				
+			</span><br/>
+			<?php
 			}
 			?>
 			<input type=submit value="Subscribe!"/>
 			</form>
 		
 		</div>
-	<?php } ?>
+	<?php
+	}  ?>
 	</div>
 	</div>
 </body>

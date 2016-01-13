@@ -59,7 +59,6 @@ background-color: rgb(221, 221, 221);
 
 </style>
 </head>
-
 <body>
 	<div id="Top">
 		<div id="TopText"><span style="font-size: 35px; padding-left:320px; padding-top:200px;"><strong>WELCOME TO Mmi EXOTEL!</strong></span></div>
@@ -67,8 +66,11 @@ background-color: rgb(221, 221, 221);
 	
 	<center>
 <!-- adding a line over here to display error message!!! -->
-	  				<?php echo $_GET["mes"];?>
-	
+		<?php 
+			if(isset($_GET["mes"]))
+			echo $_GET["mes"];
+		?>
+
 		<div id="logintab">
 
 			<form method="POST" action="index2.php">

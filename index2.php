@@ -86,12 +86,12 @@ $res=mysql_query("Select * from Users where PhoneNo='$phoneno' and Password='$pa
 $data=mysql_fetch_row($res);
 if(empty($data))
 {
-header("location:index.php?mes=InvalidLogin");
+	header("location:index.php?mes=InvalidLogin");
 }
 else
 {
-session_start();
-$_SESSION["user"]=$phoneno;
+	session_start();
+	$_SESSION["user"]=$phoneno;
 ?>
 
 	<div id="Top">

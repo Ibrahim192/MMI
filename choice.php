@@ -60,6 +60,8 @@ div div div{
 	</div>
 	
 	<div>
+	<br>
+	<a href="logout.php">LogOut</a>
 	<div id="categories">
 	<?php 
 	session_start();

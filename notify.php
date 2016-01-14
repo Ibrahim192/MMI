@@ -30,7 +30,7 @@ function formAutoSubmit() {
 	$servername = "localhost";
 	$conn = mysql_connect($servername, $username, $password);
 	mysql_select_db('Mmi');
-	$res=mysql_query("insert into Notification(CatId,Message,Priority,CompId) values('$catid','$msg','$priority','$cid')");
+	$res=mysql_query("insert into Notification(CatId,Message,Priority,CompId,Time) values('$catid','$msg','$priority','$cid',now())");
 	$res1 = mysql_query("Select s.PhoneNo from Subscribers s where '$catid' = s.CatId and '$cid'= s.CompId");
 	
 	$count=mysql_num_rows($res1);

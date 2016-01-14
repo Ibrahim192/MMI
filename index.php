@@ -1,17 +1,11 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>Welcome!</title>
+<title>Login to MMI Exotel!</title>
 <meta http-equiv="content-type" content="text/html" accept-charset="utf-8" />
 <style type="text/css">
 
 body {
-//background-color:#9CC3EC;
-background-image: url('bg.jpg');
-background-size: 1376px 768px;
-margin-left:10%;
-margin-right:10%;
 font-family:sans-serif;
 }
 
@@ -21,7 +15,7 @@ font-size:1.2em;
 border-radius:5px;
 border: 2px solid black;
 background-color:#E8E8E8;
-width: 26%;
+width: 23%;
 margin-top: 150px;
 }
 
@@ -46,7 +40,8 @@ background-color: rgb(221, 221, 221);
 
 #Top
 {
-	width: 100%;
+	width: 120%;
+	margin: -10px;
 	height: 100px;
 	background-color: #000000;
 	color: white;
@@ -61,7 +56,7 @@ background-color: rgb(221, 221, 221);
 </head>
 <body>
 	<div id="Top">
-		<div id="TopText"><span style="font-size: 35px; padding-left:320px; padding-top:200px;"><strong>WELCOME TO Mmi EXOTEL!</strong></span></div>
+		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO MMI EXOTEL!</strong></span></div>
 	</div>
 	
 	<center>
@@ -78,11 +73,11 @@ background-color: rgb(221, 221, 221);
 				<div id="logintop">User Login</div>
 
 				<div class="inputfield">
-					<input type="text" name="phoneno" style="width:200px;padding:5px;" placeholder="Phone Number">
+					<input type="text" name="phoneno" style="width:200px;padding:5px;" placeholder="Phone Number" required>
 				</div>
 			  
 				<div class="inputfield">
-					<input type="password" style="width:200px;padding:5px;" placeholder="Password" name="password">
+					<input type="password" style="width:200px;padding:5px;" placeholder="Password" name="password" required>
 				</div>
 				
 				<div class="inputfield">

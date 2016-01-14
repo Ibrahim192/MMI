@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Welcome!</title>
-<style type="text/css">
-
-body {
-font-family:sans-serif;
 }
 
 #Top
@@ -31,9 +26,8 @@ option {
 </style>
 </head>
 
-	<div id="Top">
-		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO MMI EXOTEL!</strong></span></div>
-	</div>
+<body>
+	<?php include 'top_bar.php' ?>
 	<?php
 	$servername = "localhost";
 	$username = "root";
@@ -47,20 +41,19 @@ option {
 	?>
 	<center>
 	<br/><br/>
-	Company Id: 
+	<span class='label-text'>Company Id:</span> 
 	<select onChange="window.location.href=this.value">
-	<option value="">Select</option>	
+	<option value="">Select</option>
 	<?php 
 	for($i=0; $i<$num; $i++)
 	{
 		$data = mysql_fetch_row($res);
 		?>
-		<option style="width:40px;" name="<?php echo $data[0]?>" value="<?php  echo" companies.php?cid=".$data[0] ?>"> <?php echo $data[0]." : ".$data[1]?> </option>
+		<option name="<?php echo $data[0]?>" value="<?php  echo "companies.php?cid=".$data[0] ?>"> <?php echo $data[0]." : ".$data[1]?> </option>
 	<?php } ?>
 		
 	</select>
 	
-
 <?php
 if (isset($_GET['cid']))
 { 
@@ -69,7 +62,7 @@ if (isset($_GET['cid']))
 <form action="notify.php" method="POST">
 	<input type="hidden" name = 'cid' value="<?php echo $cid; ?>" />
 <br/><br/>
-Sub cat:	 
+<span class='label-text'>Sub Cat:</span> 	 
 <select name="from" required >
 <option value="">Select</option>
 	<?php
@@ -86,14 +79,14 @@ Sub cat:
 <br/>
 <br/>
 <br/>
-Please enter your message below: <br/>
-<textarea style="margin-top:5px;" name="msg" rows=7 cols=35 maxlength=150 placeholder="Type your message here"></textarea>
+<span class='label-text'>Please enter your message below: </span> <br/>
+<textarea style="margin-top:5px;" name="msg" rows=7 cols=45 maxlength=150 placeholder="Type your message here" required></textarea>
 	<br/><br/><br/>
 Select Priority: &nbsp;&nbsp;&nbsp;&nbsp;low <input type="radio" name="priority" value=0 required />
 &nbsp;&nbsp;&nbsp;&nbsp; medium <input type="radio" name="priority" value=1 />
 &nbsp;&nbsp;&nbsp;&nbsp;high <input type="radio" name="priority" value=2 />
 <br/><br/><br/>
-<input style="padding:10px; background-color:lightgreen;" type="submit" value = "Send Message!" />
+<input style="padding:10px;" type="submit" value = "Send Message!" />
 </form>
 
 <?php } ?>

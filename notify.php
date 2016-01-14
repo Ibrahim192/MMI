@@ -1,26 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Welcome!</title>
+<title>Sending Msgs to Subscribers!</title>
 <meta http-equiv="content-type" content="text/html" accept-charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="style.css" />
 <style type="text/css">
-
-body {
-font-family:sans-serif;
-}
-#Top
-{
-	width: 120%;
-	height: 100px;
-	margin: -10px;
-	background-color: #000000;
-	color: white;
-}
-
-#TopText
-{
-	padding-top:30px;
-}
 
 </style>
 
@@ -34,9 +19,7 @@ function formAutoSubmit() {
 </head>
 
 <body onload="formAutoSubmit()">
-	<div id="Top">
-		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO MMI EXOTEL!</strong></span></div>
-	</div>
+	<?php include 'top_bar.php' ?>
 <?php
 	$cid = $_POST['cid'];
 	$catid = $_POST['from'];
@@ -56,16 +39,14 @@ function formAutoSubmit() {
 	$cname=$data2[1];
 ?>
 <form id="msg_form" action="https://~exotel_sid~:~exotel_token~@twilix.exotel.in/v1/Accounts/~exotel_sid~/Sms/send" method="post">
-<input type="hidden" name="From" value="<?php echo $cname?>"></input>
+<input type="hidden" name="From" value="<?php echo $cname?>"></input><br/>
 <?php 
 for($i=0;$i<$count;$i++)
 {
 	$data = mysql_fetch_row($res1);
-	echo "<br/>";
 	echo $data[0]."<br/>";
 ?>
 <input type="hidden" name="To[]" value="<?php echo($data[0])?>"> </input>
-
 
 <?php
 }?>

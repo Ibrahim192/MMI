@@ -90,10 +90,11 @@ CREATE TABLE `Notification` (
   `Priority` int(11) default NULL,
   `CompId` int(11) default NULL,
   `MId` int(11) NOT NULL auto_increment,
+  `Time` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`MId`),
   KEY `CatId` (`CatId`),
   KEY `CompId` (`CompId`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Notification`
@@ -101,7 +102,7 @@ CREATE TABLE `Notification` (
 
 LOCK TABLES `Notification` WRITE;
 /*!40000 ALTER TABLE `Notification` DISABLE KEYS */;
-INSERT INTO `Notification` VALUES (313,'Hello BigFoot!',0,105,1);
+INSERT INTO `Notification` VALUES (313,'Hey BigFoot!! :D',0,105,5,'2015-11-24 01:11:34');
 /*!40000 ALTER TABLE `Notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-23 23:26:45
+-- Dump completed on 2015-11-24  1:16:53

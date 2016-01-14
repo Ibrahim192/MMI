@@ -1,26 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Send msg to Subscribers!</title>
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+<style type="text/css">
+
+.label-text {
+	font-size: 1.3em;
 }
 
-#Top
-{
-	width: 120%;
-	height: 100px;
-	margin: -10px;
-	background-color: #000000;
-	color: white;
-}
-
-#TopText
-{
-	padding-top:30px;
-}
-
-option {
-	height: 25px;
-	font-size: 20px;
-	font-weight: bold;
+select {
+	font-size: 1.2em;
 }
 
 </style>
@@ -82,9 +73,9 @@ if (isset($_GET['cid']))
 <span class='label-text'>Please enter your message below: </span> <br/>
 <textarea style="margin-top:5px;" name="msg" rows=7 cols=45 maxlength=150 placeholder="Type your message here" required></textarea>
 	<br/><br/><br/>
-Select Priority: &nbsp;&nbsp;&nbsp;&nbsp;low <input type="radio" name="priority" value=0 required />
-&nbsp;&nbsp;&nbsp;&nbsp; medium <input type="radio" name="priority" value=1 />
-&nbsp;&nbsp;&nbsp;&nbsp;high <input type="radio" name="priority" value=2 />
+<span class='label-text'>Select Priority:</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class='label-text'>Low </span> <input type="radio" name="priority" value=0 required />
+&nbsp;&nbsp;&nbsp;&nbsp; <span class='label-text'>Medium </span> <input type="radio" name="priority" value=1 />
+&nbsp;&nbsp;&nbsp;&nbsp;<span class='label-text'>High</span> <input type="radio" name="priority" value=2 />
 <br/><br/><br/>
 <input style="padding:10px;" type="submit" value = "Send Message!" />
 </form>

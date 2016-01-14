@@ -3,15 +3,11 @@
 <head>
 <title>Login to MMI Exotel!</title>
 <meta http-equiv="content-type" content="text/html" accept-charset="utf-8" />
+
+<link rel="stylesheet" type="text/css" href="style.css" />
 <style type="text/css">
 
-body {
-font-family:sans-serif;
-margin: 0px;
-}
-
 #logintab {
-top: 400px;
 font-size:1.2em;
 border-radius:5px;
 border: 2px solid black;
@@ -28,7 +24,7 @@ background-color: rgb(205, 205, 205);
 }
 
 .inputfield {
-margin: 20px 15px;
+margin: 25px 15px 0px 15px;
 }
 
 #loginbutton {
@@ -38,56 +34,34 @@ border-radius: 5px;
 background-color: rgb(221, 221, 221);
 }
 
-#Top
-{
-	// width: 120%;
-	// margin: -10px;
-	height: 100px;
-	background-color: #000000;
-	color: white;
-}
-
-#TopText
-{
-	padding-top:30px;
-	font-size: 35px;
-	text-align: center;
-}
-
 </style>
 </head>
+
 <body>
-	<div id="Top">
-		<div id="TopText"><strong>WELCOME TO MMI EXOTEL!</strong></div>
-	</div>
+	<?php include "top_bar.php"; ?>
 	
 	<center>
-<!-- adding a line over here to display error message!!! -->
-		<?php 
-			if(isset($_GET["mes"]))
-			echo $_GET["mes"];
-		?>
+
 
 		<div id="logintab">
 
+			<div id="logintop">User Login</div>
 			<form method="POST" action="categories.php">
 
-				<div id="logintop">User Login</div>
-
-				<div class="inputfield">
-					<input type="text" name="phoneno" style="width:200px;padding:5px;" placeholder="Phone Number" required>
-				</div>
-			  
-				<div class="inputfield">
-					<input type="password" style="width:200px;padding:5px;" placeholder="Password" name="password" required>
-				</div>
+				<!-- adding a line over here to display error message!!! -->
+				<?php 
+					if(isset($_GET["mes"]))
+					echo $_GET["mes"];
+				?>
+					<input class="inputfield" type="text" name="phoneno" style="width:200px;padding:5px;" placeholder="Phone Number" required>
 				
-				<div class="inputfield">
-					<input type="submit" value="Log In!" id="loginbutton" />
-				</div>
+					<input class="inputfield" type="password" style="width:200px;padding:5px;" placeholder="Password" name="password" required>
+				
+					<input class="inputfield" type="submit" value="Log In!" id="loginbutton" /> <br/><br/>
+				
 			</form>
 
 		</div>
 	</center>
 </body>
-</html>															
+</html>

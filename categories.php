@@ -62,8 +62,7 @@ else
 ?>
 	<!-- including the top bar -->
 	<?php include 'top_bar.php'; ?>
-	
-	<div id="heading">
+	<a href="feeds.php">News feeds</a>
 		Click on a Category to <strong>SUBSCRIBE</strong> from
 	</div>
 	<div>

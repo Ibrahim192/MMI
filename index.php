@@ -7,6 +7,7 @@
 
 body {
 font-family:sans-serif;
+margin: 0px;
 }
 
 #logintab {
@@ -37,11 +38,10 @@ border-radius: 5px;
 background-color: rgb(221, 221, 221);
 }
 
-
 #Top
 {
-	width: 120%;
-	margin: -10px;
+	// width: 120%;
+	// margin: -10px;
 	height: 100px;
 	background-color: #000000;
 	color: white;
@@ -50,13 +50,15 @@ background-color: rgb(221, 221, 221);
 #TopText
 {
 	padding-top:30px;
+	font-size: 35px;
+	text-align: center;
 }
 
 </style>
 </head>
 <body>
 	<div id="Top">
-		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO MMI EXOTEL!</strong></span></div>
+		<div id="TopText"><strong>WELCOME TO MMI EXOTEL!</strong></div>
 	</div>
 	
 	<center>
@@ -68,7 +70,7 @@ background-color: rgb(221, 221, 221);
 
 		<div id="logintab">
 
-			<form method="POST" action="index2.php">
+			<form method="POST" action="categories.php">
 
 				<div id="logintop">User Login</div>
 

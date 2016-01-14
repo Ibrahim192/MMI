@@ -5,7 +5,6 @@
 <style type="text/css">
 
 body {
-	background-size: 1376px 768px;
 	font-family:sans-serif;
 }
 
@@ -56,7 +55,7 @@ div div div{
 
 <body>
 	<div id="Top">
-		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO Mmi EXOTEL!</strong></span></div>
+		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO MMI EXOTEL!</strong></span></div>
 	</div>
 	
 	<div>

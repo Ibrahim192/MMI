@@ -5,12 +5,8 @@
 <style type="text/css">
 
 body {
-//background-color:#9CC3EC;
-background-image: url('bg.jpg');
-background-size: 1376px 768px;
 font-family:sans-serif;
 }
-
 
 #footer {
 clear:both;
@@ -95,7 +91,7 @@ else
 ?>
 
 	<div id="Top">
-		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO Mmi EXOTEL!</strong></span></div>
+		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO MMI EXOTEL!</strong></span></div>
 	</div>
 	<div id="heading">
 		CLICK ON A CATEGORY TO Subscribe/Unsubscribe FROM

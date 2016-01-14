@@ -5,13 +5,8 @@
 <style type="text/css">
 
 body {
-//background-color:#9CC3EC;
-background-image: url('bg.jpg');
-background-size: 1376px 768px;
 font-family:sans-serif;
 }
-
-
 
 #Top
 {
@@ -27,11 +22,17 @@ font-family:sans-serif;
 	padding-top:30px;
 }
 
+option {
+	height: 25px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
 </style>
 </head>
 
 	<div id="Top">
-		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO Mmi EXOTEL!</strong></span></div>
+		<div id="TopText"><span style="font-size: 35px; padding-left:430px; padding-top:200px;"><strong>WELCOME TO MMI EXOTEL!</strong></span></div>
 	</div>
 	<?php
 	$servername = "localhost";
@@ -48,7 +49,7 @@ font-family:sans-serif;
 	<br/><br/>
 	Company Id: 
 	<select onChange="window.location.href=this.value">
-	<option value="">Select...</option>	
+	<option value="">Select</option>	
 	<?php 
 	for($i=0; $i<$num; $i++)
 	{
@@ -67,26 +68,32 @@ if (isset($_GET['cid']))
 	?>
 <form action="notify.php" method="POST">
 	<input type="hidden" name = 'cid' value="<?php echo $cid; ?>" />
+<br/><br/>
 Sub cat:	 
-<select name="from">
+<select name="from" required >
+<option value="">Select</option>
 	<?php
-		$res = mysql_query("select s.SubCat_id from SubCat s, Cat_Comp c where $cid = c.CompId and c.scat_id = s.SubCat_id");
+		$res = mysql_query("select s.SubCat_id, s.name from SubCat s, Cat_Comp c where $cid = c.CompId and c.scat_id = s.SubCat_id");
 		$count = mysql_num_rows($res);
 		for($i=0; $i<$count; $i++)
 		{
 			$data = mysql_fetch_row($res);
-			echo $data[0];
+			//echo $data[0];
 	?> 
-	<option  name="<?php echo $data[0]?>" value = "<?php echo $data[0] ?>" > <?php echo $data[0] ?> </option>
+	<option  name="<?php echo $data[0]?>" value = "<?php echo $data[0] ?>" > <?php echo $data[0]." : ".$data[1] ?> </option>
 	<?php } ?>
 </select>
 <br/>
 <br/>
-<textarea name="msg" maxlength=150></textarea>
-	<br/>
-Priority&nbsp;&nbsp;&nbsp;&nbsp;low <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=0 />&nbsp;&nbsp;&nbsp;&nbsp;medium <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=1 />&nbsp;&nbsp;&nbsp;&nbsp;high <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=2 />
 <br/>
-<input type="submit" value = "Send Message!" />
+Please enter your message below: <br/>
+<textarea style="margin-top:5px;" name="msg" rows=7 cols=35 maxlength=150 placeholder="Type your message here"></textarea>
+	<br/><br/><br/>
+Select Priority: &nbsp;&nbsp;&nbsp;&nbsp;low <input type="radio" name="priority" value=0 required />
+&nbsp;&nbsp;&nbsp;&nbsp; medium <input type="radio" name="priority" value=1 />
+&nbsp;&nbsp;&nbsp;&nbsp;high <input type="radio" name="priority" value=2 />
+<br/><br/><br/>
+<input style="padding:10px; background-color:lightgreen;" type="submit" value = "Send Message!" />
 </form>
 
 <?php } ?>

@@ -32,7 +32,7 @@
 	text-align: center;
 	font-size: 35px;
 	font-weight: bold;
-	color: blue;
+	color: #2196F3;
 }
 
 </style>

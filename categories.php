@@ -6,12 +6,6 @@
 <link rel="stylesheet" type="text/css" href="style.css" />
 <style type="text/css">
 
-#heading {
-	 font-size: 24px;
-	 margin-top: 40px;
-	 text-align: center;
-}
-
 #categories {
 	clear: both;
 	margin-top: 30px;
@@ -30,7 +24,7 @@
 	margin: 1.5%;
 	padding-top: 5%;
 	text-align: center;
-	font-size: 35px;
+	font-size: 2.3em;
 	font-weight: bold;
 	color: #2196F3;
 }

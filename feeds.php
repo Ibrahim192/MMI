@@ -1,3 +1,23 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html" accept-charset="utf-8" />
+<title>Subscribe to a New Service!</title>
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+<style type="text/css">
+#heading {
+	 font-size: 24px;
+	 margin-top: 40px;
+	 text-align: center;
+}
+</style>
+</head>
+
+<body>
+<?php
+	include 'top_bar.php';
+?>
+<div id="heading">History</div>
 <?php
 	session_start();
 	if(!$_SESSION["user"])
@@ -28,3 +48,5 @@
 		}
 	}
 ?>
+</body>
+</html>

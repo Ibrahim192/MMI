@@ -13,15 +13,11 @@ width:75%;
 border: 2px solid blue;
 margin-top:20px;
 }
-td
+td, th
 {
 padding:15px;
 }
-#heading {
-	 font-size: 24px;
-	 margin-top: 40px;
-	 text-align: center;
-}
+
 #categories {
 	clear: both;
 	margin-top: 30px;
@@ -42,7 +38,7 @@ padding:15px;
 	padding-left: 2%;
 	padding-top:2%;
 	text-align: left;
-	font-size: 20px;
+	font-size: 1.3em;
 	font-weight: bold;
 	color: #2196F3;
 }
@@ -68,12 +64,15 @@ padding:15px;
 	$r=mysql_query("Select CompId,CatId,Time,Message from List where PhoneNo='$su'");
 	$cnt1=mysql_num_rows($r);
 	$i=0;
-	echo "<div id=categories>";
-	echo "<div class=menu>";
-	echo "<a href=categories.php>Subscribe</a><br>";
-	echo "<a href=unsub.php>Unsubscribe</a><br>";
-	echo "</div><table border=2>";
-	echo "<tr><th>CompanyName</th><th>Category</th><th>Time</th><th>Message</th></tr>";
+	?>
+	<div id="categories">
+		<div class="menu">
+			<a href="categories.php">Subscribe</a><br/>
+			<a href="#">Unsubscribe</a><br/>
+		</div>
+		<table border=2>
+		<tr><th>CompanyName</th><th>Category</th><th>Time</th><th>Message</th></tr>
+	<?php
 	while($i<$cnt1)
 	{
 		$data=mysql_fetch_row($r);

@@ -80,6 +80,20 @@ INSERT INTO `Company` VALUES (101,'Company1'),(102,'Company2'),(103,'Company3'),
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `List`
+--
+
+DROP TABLE IF EXISTS `List`;
+/*!50001 DROP VIEW IF EXISTS `List`*/;
+/*!50001 CREATE TABLE `List` (
+  `PhoneNo` bigint(10),
+  `CompId` int(11),
+  `CatId` int(11),
+  `Time` timestamp,
+  `Message` varchar(256)
+) */;
+
+--
 -- Table structure for table `Notification`
 --
 
@@ -94,7 +108,7 @@ CREATE TABLE `Notification` (
   PRIMARY KEY  (`MId`),
   KEY `CatId` (`CatId`),
   KEY `CompId` (`CompId`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Notification`
@@ -102,7 +116,7 @@ CREATE TABLE `Notification` (
 
 LOCK TABLES `Notification` WRITE;
 /*!40000 ALTER TABLE `Notification` DISABLE KEYS */;
-INSERT INTO `Notification` VALUES (313,'Hey BigFoot!! :D',0,105,5,'2015-11-24 01:11:34');
+INSERT INTO `Notification` VALUES (313,'Hey BigFoot!',0,105,8,'2016-01-13 21:51:38'),(313,'hey!',0,105,9,'2016-01-13 21:54:58'),(313,'Hey!',0,105,10,'2016-01-13 21:55:29'),(301,'Hello',0,101,11,'2016-01-13 21:58:14');
 /*!40000 ALTER TABLE `Notification` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +166,7 @@ CREATE TABLE `Subscribers` (
 
 LOCK TABLES `Subscribers` WRITE;
 /*!40000 ALTER TABLE `Subscribers` DISABLE KEYS */;
-INSERT INTO `Subscribers` VALUES (7411476831,101,301,0,5,5),(7411476831,104,304,1,100,100),(7259856058,101,301,0,5,5),(7259856058,105,313,0,5,5),(7259856058,105,314,1,1,1),(7259166120,101,301,2,55,55),(7259166120,103,312,1,5,5);
+INSERT INTO `Subscribers` VALUES (7411476831,101,301,0,5,5),(7411476831,104,304,1,100,100),(7259856058,101,301,0,5,5),(7259856058,105,313,0,5,5),(7259856058,105,314,1,1,1),(7259166120,101,301,2,55,55),(7259166120,103,312,1,5,5),(7411476831,0,313,0,0,0);
 /*!40000 ALTER TABLE `Subscribers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,6 +192,16 @@ LOCK TABLES `Users` WRITE;
 INSERT INTO `Users` VALUES (7259856058,'Bangalore','Ibrahim','Ibrahim'),(7411476831,'Haryan','Mandeep','Mandeep'),(7259166120,'Mumbai','Nandy','Nandy');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `List`
+--
+
+/*!50001 DROP TABLE IF EXISTS `List`*/;
+/*!50001 DROP VIEW IF EXISTS `List`*/;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `List` AS select `s`.`PhoneNo` AS `PhoneNo`,`s`.`CompId` AS `CompId`,`s`.`CatId` AS `CatId`,`n`.`Time` AS `Time`,`n`.`Message` AS `Message` from (`Notification` `n` join `Subscribers` `s`) where ((`s`.`CatId` = `n`.`CatId`) and (`s`.`CompId` = `n`.`CompId`) and (`s`.`Priority` = `n`.`Priority`)) */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -188,4 +212,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-24  1:16:53
+-- Dump completed on 2016-01-13 23:04:36

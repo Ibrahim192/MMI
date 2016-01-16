@@ -5,6 +5,10 @@
 
 <link rel="stylesheet" type="text/css" href="style.css" />
 <style type="text/css">
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac9ec5281903c48f99428c8f9fcccff625ee535e
 #categories {
 	clear: both;
 	margin-top: 30px;

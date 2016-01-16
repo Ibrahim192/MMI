@@ -17,6 +17,10 @@ td, th
 {
 padding:15px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac9ec5281903c48f99428c8f9fcccff625ee535e
 #categories {
 	clear: both;
 	margin-top: 30px;

@@ -72,11 +72,8 @@
 				<?php
 				for($j=0;$j<$cnt2;$j++)
 				{
-<<<<<<< HEAD
 					$rowd=mysqli_fetch_row($res2);
-=======
 					$rowd=mysql_fetch_row($res2);
->>>>>>> ac9ec5281903c48f99428c8f9fcccff625ee535e
 					echo "<input type=checkbox name=Company[] value=$rowd[1] />&nbsp;".$rowd[0]."       ";
 				?>
 				<span id="extra-stuff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Low <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=0 required />

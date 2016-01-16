@@ -25,7 +25,7 @@ function formAutoSubmit() {
 	$priority = $_POST['priority'];
 	$msg=$_POST['msg'];
 	$username = "root";
-	$password = "";
+	$password = "TrojanHorse*#";
 	$servername = "localhost";
 	$db="Mmi";
 	$conn = mysqli_connect($servername, $username, $password,$db);

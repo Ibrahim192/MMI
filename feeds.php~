@@ -55,7 +55,7 @@ padding:15px;
 	$su=$_SESSION["user"];
 	$servername = "localhost";
 	$username = "root";
-	$password = "";
+	$password = "TrojanHorse*#";
 	$db="Mmi";
 	$conn = mysqli_connect($servername, $username,$password,$db);
 	$query="Select CompId,CatId,Time,Message from List where PhoneNo='$su'";

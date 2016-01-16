@@ -33,7 +33,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "TrojanHorse*#";
 $db="Mmi";
 $conn = mysqli_connect($servername, $username,$password,$db);
 $phoneno=strval($_POST['phoneno']);

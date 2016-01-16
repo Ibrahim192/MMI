@@ -50,7 +50,7 @@
 	//echo $cat;
 	$servername = "localhost";
 	$username = "root";
-	$password = "";
+	$password = "TrojanHorse*#";
 	$db="Mmi";
 	$conn = mysqli_connect($servername, $username,$password,$db);
 	$query="Select * from SubCat where ParCatId='$cat'";

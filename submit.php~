@@ -1,7 +1,7 @@
 <?php 
 	$servername = "localhost";
 	$username = "root";
-	$password = "";
+	$password = "TrojanHorse*#";
 	$db="Mmi";
 	$conn = mysqli_connect($servername, $username,$password,$db);
 	foreach($_GET['Company'] as $selected){

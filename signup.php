@@ -53,15 +53,17 @@
 					<div class="logintop">User Signup</div>
 					<form method="POST" action="signup2.php">
 
-							<input class="inputfield" name="phoneno" value=<?php echo "$phoneno"?> required>
+							<input class="inputfield" type="hidden" name="phoneno" value="<?php echo "$phoneno"; ?>" required />
+							
+							<input class="inputfield" disabled value='<?php echo "$phoneno" ?>' />
 							
 							<input class="inputfield" type="text" name="nam" placeholder="Name" maxlength=60 required />
 							
 							<input class="inputfield" type="text" name="address" maxlength=235 placeholder="Address" required />
 						
-							<input class="inputfield" type="password" placeholder="Enter Password" maxlength=63 name="password" required>
+							<input class="inputfield" type="password" placeholder="Enter Password" maxlength=63 name="password" required />
 							
-							<input class="inputfield" type="password" placeholder="Confirm Password" maxlength=63 name="confirm_password" required>
+							<input class="inputfield" type="password" placeholder="Confirm Password" maxlength=63 name="confirm_password" required />
 						
 							<input class="loginbutton" type="submit" value="Create Account!" /> <br/><br/>
 						

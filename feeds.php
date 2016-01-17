@@ -7,40 +7,24 @@
 <style type="text/css">
 table
 {
+table-layout:fixed;
 color:red;
 border-collapse:collapse;
-width:75%;
 border: 2px solid blue;
+margin-left:40px;
 margin-top:20px;
+width:1200px;
 }
-td, th
+td
 {
+word-wrap:break-word;
 padding:15px;
 }
+#heading {
+	 font-size: 24px;
+	 margin-top: 20px;
+}
 
-#categories {
-	clear: both;
-	margin-top: 30px;
-	border: 2px solid red;
-	width: 96%;
-	margin-left: 2%;
-	height: 98%;
-}
-.menu
-{
-	border: 2px solid #2196F3;
-	height: 86%;
-	width: 15%;
-	float: left;
-	display: inline;
-	margin: 1.5%;
-	padding-left: 2%;
-	padding-top:2%;
-	text-align: left;
-	font-size: 1.3em;
-	font-weight: bold;
-	color: #2196F3;
-}
 </style>
 </head>
 
@@ -63,15 +47,8 @@ padding:15px;
 	$r=mysqli_query($conn,$query);
 	$cnt1=mysqli_num_rows($r);
 	$i=0;
-	?>
-	<div id="categories">
-		<div class="menu">
-			<a href="categories.php">Subscribe</a><br/>
-			<a href="#">Unsubscribe</a><br/>
-		</div>
-		<table border=2>
-		<tr><th>CompanyName</th><th>Category</th><th>Time</th><th>Message</th></tr>
-	<?php
+	echo"<table border=2 width=10px>";
+	echo "<tr><th>CompanyName</th><th>Category</th><th>Time</th><th>Message</th></tr>";
 	while($i<$cnt1)
 	{
 		$data=mysqli_fetch_row($r);
@@ -85,6 +62,7 @@ padding:15px;
 		$i=$i+1;
 		
 	}
+	echo "</table>";
 ?>
 </body>
 </html>

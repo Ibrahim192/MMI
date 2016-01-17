@@ -4,7 +4,6 @@
 	$password = "";
 	$db="Mmi";
 	$conn = mysqli_connect($servername, $username,$password,$db);
-	mysqli_set_charset($conn, 'utf8');
 	foreach($_GET['Company'] as $selected){
 		$scat=$_GET['scat'];
 		if (!isset($_SESSION["user"]))
@@ -14,10 +13,6 @@
 		$data1=mysqli_fetch_row($res1);
 		$query="Select Name from SubCat where SubCat_id='$scat'";
 		$res2=mysqli_query($conn,$query);
-		$data2=mysqli_fetch_row($res2);
-		$res1=mysqli_query("Select Name from Company where CompId='$selected'");
-		$data1=mysqli_fetch_row($res1);
-		$res2=mysqli_query("Select Name from SubCat where SubCat_id='$scat'");
 		$data2=mysqli_fetch_row($res2);
 
 		echo "Successfully subscribed to <strong>".$data1[0]."</strong> for <strong>".$data2[0]."</strong>!! :)";

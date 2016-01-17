@@ -5,26 +5,21 @@
 
 <link rel="stylesheet" type="text/css" href="style.css" />
 <style type="text/css">
-#categories {
-	clear: both;
-	margin-top: 30px;
-	border: 2px solid red;
-	width: 96%;
-	margin-left: 2%;
-	height: 440px;
-}
 .category-block{
 	border: 2px solid #2196F3;
-	height: 100px;
 	width: 30%;
 	float: left;
 	display: inline;
 	margin: 1.5%;
-	padding-top: 5%;
+	padding: 5% 0%;
 	text-align: center;
 	font-size: 2.3em;
 	font-weight: bold;
 	color: #2196F3;
+}
+.height440
+{
+	height: 440px;
 }
 </style>
 </head>
@@ -36,13 +31,16 @@ $username = "root";
 $password = "";
 $db="Mmi";
 $conn = mysqli_connect($servername, $username,$password,$db);
-$phoneno=strval($_POST['phoneno']);
-$pass=$_POST['password'];
-$phoneno=mysqli_real_escape_string($conn,$phoneno);
-$pass=mysqli_real_escape_string($conn,$pass);
-$query="Select * from Users where PhoneNo='$phoneno' and Password='$pass'";
-$res=mysqli_query($conn,$query);
-$data=mysqli_fetch_row($res);
+if (isset($_POST['phoneno']) && isset($_POST['password']))
+{
+	$phoneno=strval($_POST['phoneno']);
+	$pass=$_POST['password'];
+	$phoneno=mysqli_real_escape_string($conn,$phoneno);
+	$pass=mysqli_real_escape_string($conn,$pass);	
+	$query="Select * from Users where PhoneNo='$phoneno' and Password='$pass'";
+	$res=mysqli_query($conn,$query);
+	$data=mysqli_fetch_row($res);
+}
 if(empty($data))
 {
 	header("location:index.php?mes=Invalid%20Login.%20Please%20Try%20Again!");
@@ -58,22 +56,20 @@ else
 	<div id="heading">
 		Click on a Category to <strong>SUBSCRIBE</strong> from
 	</div>
-	<div>
-		<div id="categories">
-			<?php
-			$query="Select * from Category";
-			$res2 = mysqli_query($conn,$query);
-			$count = mysqli_num_rows($res2);	
-			for($i=0; $i<$count; $i++) {
-			?>
-				<div class="category-block">
-					<?php
-					$data = mysqli_fetch_row($res2);
-					?>
-					<a href="<?php echo 'choice.php?cat='.$data[0];?>"> <?php echo $data[0]." : ".$data[1];?> </a>
-				</div>
-			<?php }?>
-		</div>
+	<div class="main-content height440">
+		<?php
+		$query="Select * from Category";
+		$res2 = mysqli_query($conn,$query);
+		$count = mysqli_num_rows($res2);	
+		for($i=0; $i<$count; $i++) {
+		?>
+			<div class="category-block">
+				<?php
+				$data = mysqli_fetch_row($res2);
+				?>
+				<a href="<?php echo 'choice.php?cat='.$data[0];?>"> <?php echo $data[0]." : ".$data[1];?> </a>
+			</div>
+		<?php }?>
 	</div>
 
 <?php

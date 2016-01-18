@@ -40,7 +40,7 @@
 	
 	<ul class="top_nav">
 		<li><a href="subscribed.php">Home</a></li>
-		<li><a href="categories.php">New Service</a></li>
+		<li><a href="categories.php">New Services</a></li>
 		<li><a href="feeds.php">Message Feeds</a></li>
 		<li><a class="last-link" href="logout.php">Logout!</a></li>
 	</ul>

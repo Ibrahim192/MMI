@@ -31,6 +31,7 @@ $username = "root";
 $password = "";
 $db="Mmi";
 $conn = mysqli_connect($servername, $username,$password,$db);
+session_start();
 if (isset($_POST['phoneno']) && isset($_POST['password']))
 {
 	$phoneno=strval($_POST['phoneno']);
@@ -41,13 +42,13 @@ if (isset($_POST['phoneno']) && isset($_POST['password']))
 	$res=mysqli_query($conn,$query);
 	$data=mysqli_fetch_row($res);
 }
-if(empty($data))
+if(empty($data)&&!$_SESSION["user"])
 {
 	header("location:index.php?mes=Invalid%20Login.%20Please%20Try%20Again!");
 }
 else
 {
-	session_start();
+	if(!$_SESSION["user"])
 	$_SESSION["user"]=$phoneno;
 ?>
 	<!-- including the top bar -->

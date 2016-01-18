@@ -30,7 +30,7 @@ border:2;
 		$conn = mysqli_connect($servername, $username, $password,$db);
 		$query="insert into Notification(CatId,Message,Priority,CompId,Time) values('$catid','$msg','$priority','$cid',now())";
 		$res=mysqli_query($conn,$query);
-		$query="Select s.PhoneNo from Subscribers s where '$catid' = s.CatId and '$cid'= s.CompId and currlim>0";
+		$query="Select s.PhoneNo from Subscribers s where '$catid' = s.CatId and '$cid'= s.CompId and $priority>=s.Priority and currlim>0";
 		$res1 = mysqli_query($conn,$query);
 		$count=mysqli_num_rows($res1);
 		$query="select * from Company where CompId='$cid'";
@@ -82,7 +82,7 @@ function abc(ofe)
 			{
 				var aaa=<?php
 		
-	 $query="Update Subscribers set currlim=currlim-1 where '$catid' = CatId and '$cid'= CompId and currlim>0"; mysqli_query($conn,$query);?> 
+	 $query="Update Subscribers set currlim=currlim-1 where '$catid' = CatId and '$cid'= CompId and $priority>=Priority and currlim>0"; mysqli_query($conn,$query);?> 
 				disp+="<center><table border=1 ><tr><th>To</th><th>Date Created</th><th>Message</th><th>Status</th></tr>";
 				for(i=0;i<abc.length;i++)
 				{

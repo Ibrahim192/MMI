@@ -59,7 +59,7 @@ function redirect($catid)
 				$company_res = mysqli_fetch_row($company);
 				$query="Select Name from SubCat where SubCat_id = '$row[2]'";
 				$category = mysqli_query($conn,$query);
-				$category_result = mysqli_fetch_row($category);
+				$category_result = mysql_fetch_row($category);
 				$priority;
 				switch($row[3])
 				{

@@ -37,17 +37,15 @@ function redirect($catid)
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
-		$conn = mysql_connect($servername, $username,$password);
-		mysql_set_charset('utf8',$conn);
-		mysql_select_db('Mmi');
-		
+		$db="Mmi";
+		$conn = mysqli_connect($servername, $username,$password,$db);
 		session_start();
 		if(!$_SESSION["user"])
 			header("location:index.php");
 		$su=$_SESSION["user"];
-
-		$res = mysql_query("Select * from subscribers where PhoneNo = '$su'");
-		$count = mysql_num_rows($res);
+		$query="Select * from Subscribers where PhoneNo = '$su'";
+		$res = mysqli_query($conn,$query);
+		$count = mysqli_num_rows($res);
 		if (!$count)
 			echo "<span id='main_message'><center>You haven't subscribed to any services yet. <br/> Click <a href='categories.php'>here</a> to subscribe</center></span>";
 		else
@@ -55,10 +53,12 @@ function redirect($catid)
 			$i=0;
 			for($i=0; $i<$count; $i++)
 			{
-				$row = mysql_fetch_row($res);
-				$company = mysql_query("Select Name from company where compid = '$row[1]'");
-				$company_res = mysql_fetch_row($company);
-				$category = mysql_query("Select Name from subcat where subcat_id = '$row[2]'");
+				$row = mysqli_fetch_row($res);
+				$query="Select Name from Company where CompId = '$row[1]'";
+				$company = mysqli_query($conn,$query);
+				$company_res = mysqli_fetch_row($company);
+				$query="Select Name from SubCat where SubCat_id = '$row[2]'";
+				$category = mysqli_query($conn,$query);
 				$category_result = mysql_fetch_row($category);
 				$priority;
 				switch($row[3])

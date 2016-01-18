@@ -15,23 +15,20 @@ select {
 <script type="text/javascript">
 function abc(str)
 {
-var xhr=new XMLHttpRequest();
-
-xhr.onreadystatechange=function()
-{
-if(xhr.readyState==4&&xhr.status==200)
-{
-var res=xhr.responseText;
-document.getElementById("demo").innerHTML=res;
-}
-
-}
-xhr.open("GET","fetch.php?cid="+str,true);
-xhr.send();
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function()
+	{
+		if(xhr.readyState==4&&xhr.status==200)
+		{
+			var res=xhr.responseText;
+			document.getElementById("demo").innerHTML=res;
+		}
+	}
+	xhr.open("GET","fetch.php?cid="+str,true);
+	xhr.send();
 }
 </script>
 </head>
-
 <body>
 	<?php include 'top_bar.php' ?>
 	<?php
@@ -48,21 +45,17 @@ xhr.send();
 	<br/><br/>
 	<span class='label-text'>Company Id:</span> 
 	<select onChange="abc(this.value)">
-	<option value="">Select</option>
-	<?php 
-	for($i=0; $i<$num; $i++)
-	{
-		$data = mysqli_fetch_row($res);
+		<option value="">Select</option>
+		<?php 
+		for($i=0; $i<$num; $i++)
+		{
+			$data = mysqli_fetch_row($res);
 		?>
 		<option name="<?php echo $data[0]?>" value="<?php  echo $data[0] ?>"> <?php echo $data[0]." : ".$data[1]?> </option>
-	<?php } ?>
-		
+		<?php } ?>
 	</select>
-	
-<p id="demo"></p>
-
+	<p id="demo"></p>
 	</center>
-	
 </body>
 </html>
 

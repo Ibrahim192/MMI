@@ -48,15 +48,15 @@ if(empty($data)&&!$_SESSION["user"])
 }
 else
 {
-	if(!$_SESSION["user"])
-	$_SESSION["user"]=$phoneno;
+	if(!isset($_SESSION["user"]))
+		$_SESSION["user"]=$phoneno;
 ?>
 	<!-- including the top bar -->
 	<?php include 'top_bar.php'; ?>
 	
 	<ul class="top_nav">
 		<li><a href="subscribed.php">Home</a></li>
-		<li><a class="active" href="categories.php">New Service</a></li>
+		<li><a class="active" href="categories.php">New Services</a></li>
 		<li><a href="feeds.php">Message Feeds</a></li>
 		<li><a class="last-link" href="logout.php">Logout!</a></li>
 	</ul>

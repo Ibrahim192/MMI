@@ -1,5 +1,5 @@
 body {
-	font-family:sans-serif;
+	font-family:Georgia, serif;
 	margin: 0px;
 }
 
@@ -8,6 +8,8 @@ body {
 	height: 100px;
 	background-color: #000000;
 	color: white;
+	top: 0px;
+	width: 100%;
 }
 
 #top-text
@@ -21,6 +23,7 @@ body {
 	 font-size: 2em;
 	 margin-top: 40px;
 	 text-align: center;
+	 text-decoration: underline;
 }
 
 .loginbutton {
@@ -142,4 +145,50 @@ th
 {
 	float: right;
 	padding: 5px 10px;
+}
+
+.top_nav
+{
+	width: 96%;
+	margin: 2%;
+	padding: 0px;
+	height: 55px;
+    overflow: hidden;
+	background-color: #333;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.top_nav li
+{
+	float: left;
+	list-style: none;
+	width: 25%;
+	margin: 0px;
+}
+
+.top_nav li a
+{
+	display: block;
+	padding: 14px;
+	text-align: center;
+	margin: 0px;
+	color: white;
+    border-right: 1px solid #bbb;
+}
+
+.top_nav li a:hover
+{
+	background-color: #111;
+}
+
+.top_nav li .last-link
+{
+	border-right: none;
+}
+
+.active
+{
+	background-color: #4CAF50;
+	border-bottom: 5px solid #333;
 }

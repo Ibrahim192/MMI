@@ -21,6 +21,17 @@ function redirect($catid)
 	<!-- including the top bar -->
 	<?php include 'top_bar.php'; ?>
 	
+	<ul class="top_nav">
+		<li><a class="active" href="subscribed.php">Home</a></li>
+		<li><a href="categories.php">Subscribe to New Service</a></li>
+		<li><a href="feeds.php">Message Feeds</a></li>
+		<li><a class="last-link" href="logout.php">Logout!</a></li>
+	</ul>
+	
+	<div id="heading">
+		Here are the services that you have Subscribed for
+	</div>
+	
 	<div class="main-content">
 		<?php
 		$servername = "localhost";

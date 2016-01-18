@@ -47,8 +47,14 @@ padding:15px;
 <body>
 <?php
 	include 'top_bar.php';
-?>
-<div id="heading">History</div>
+	?>
+	<ul class="top_nav">
+		<li><a href="subscribed.php">Home</a></li>
+		<li><a href="categories.php">Subscribe to New Service</a></li>
+		<li><a class="active" href="feeds.php">Message Feeds</a></li>
+		<li><a class="last-link" href="logout.php">Logout!</a></li>
+	</ul>
+<div id="heading">Your Message Feeds:</div>
 <?php
 	session_start();
 	if(!$_SESSION["user"])

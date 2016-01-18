@@ -38,9 +38,15 @@
 <body>
 	<?php include 'top_bar.php' ?>
 	
+	<ul class="top_nav">
+		<li><a href="subscribed.php">Home</a></li>
+		<li><a href="categories.php">Subscribe to New Service</a></li>
+		<li><a href="feeds.php">Message Feeds</a></li>
+		<li><a class="last-link" href="logout.php">Logout!</a></li>
+	</ul>
+	
 	<div>
 	<br/>
-	<a style="float:right" href="logout.php">LogOut</a>
 	<div id="categories">
 	<?php 
 	session_start();
@@ -73,7 +79,6 @@
 				for($j=0;$j<$cnt2;$j++)
 				{
 					$rowd=mysqli_fetch_row($res2);
-					$rowd=mysql_fetch_row($res2);
 					echo "<input type=checkbox name=Company[] value=$rowd[1] />&nbsp;".$rowd[0]."       ";
 				?>
 				<span id="extra-stuff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Low <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=0 required />

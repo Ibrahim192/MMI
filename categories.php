@@ -52,7 +52,14 @@ else
 ?>
 	<!-- including the top bar -->
 	<?php include 'top_bar.php'; ?>
-	<a href="feeds.php">Feeds</a>
+	
+	<ul class="top_nav">
+		<li><a href="subscribed.php">Home</a></li>
+		<li><a class="active" href="categories.php">Subscribe to New Service</a></li>
+		<li><a href="feeds.php">Message Feeds</a></li>
+		<li><a class="last-link" href="logout.php">Logout!</a></li>
+	</ul>
+	
 	<div id="heading">
 		Click on a Category to <strong>SUBSCRIBE</strong> from
 	</div>

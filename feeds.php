@@ -5,26 +5,55 @@
 
 <link rel="stylesheet" type="text/css" href="style.css" />
 <style type="text/css">
-table
+#scat
 {
-table-layout:fixed;
-color:red;
-border-collapse:collapse;
-border: 2px solid blue;
-margin-left:40px;
-margin-top:20px;
-width:1200px;
+	margin: 8px 0px 16px 16px;
+	background-color:#fffaf2;
+	border: 2px solid #2196F3;
+	padding:2%;
+	width: 8%;
+	float: left;
+	color: orange;
+	height:6%;
+	text-align:center;
 }
-td
+#comp
 {
-word-wrap:break-word;
-padding:15px;
+	margin: 8px 0px 0px 0px;
+	padding:10px;
+	background-color: #ffe5e5;
+	border: 2px solid #2196F3;
+	width: 20%;
+	float: left;
+	color: red;
+	height:2.9%;
 }
-#heading {
-	 font-size: 24px;
-	 margin-top: 20px;
+#time
+{
+	margin: 8px 0px 0px 0px;
+		padding:10px;
+	background-color:#ecffe5;
+	border: 2px solid #2196F3;
+	width: 50%;
+	padding-right:2px;
+	text-align: right;
+	float: left;
+	color: green;
+	height:2.9%;
 }
-
+#Message
+{
+	margin: 0px 0px 16px 0px;
+	background-color:#ebf0fa;
+	padding-top:4px;
+	padding-left:6px;
+	border: 2px solid #2196F3;
+	width: 72.3%;
+	text-align: left;
+	float: left;
+	color: black;
+	height:6.65%;
+}
 </style>
 </head>
 
@@ -47,8 +76,6 @@ padding:15px;
 	$r=mysqli_query($conn,$query);
 	$cnt1=mysqli_num_rows($r);
 	$i=0;
-	echo"<table border=2 width=10px>";
-	echo "<tr><th>CompanyName</th><th>Category</th><th>Time</th><th>Message</th></tr>";
 	while($i<$cnt1)
 	{
 		$data=mysqli_fetch_row($r);
@@ -58,7 +85,7 @@ padding:15px;
 		$fetch2=mysqli_query($conn,$query2);
 		$d1=mysqli_fetch_row($fetch1);
 		$d2=mysqli_fetch_row($fetch2);
-		echo "<tr><td>".$d1[0]."</td><td>".$d2[0]."</td><td>".$data[2]."</td><td>".$data[3]."</td></tr>";
+		echo "<div><div id=scat>".$d2[0]."</div><div id=comp>".$d1[0]."</div><div id=time>".$data[2]."</div><div id=Message>".$data[3]."</div></div>";
 		$i=$i+1;
 		
 	}

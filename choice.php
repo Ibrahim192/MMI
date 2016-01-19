@@ -1,3 +1,17 @@
+<?php
+	session_start();
+	require_once("db_connection.php");
+	require_once("functions.php");
+	if (isset($_SESSION["phoneno"]))
+	{
+		$phoneno = $_SESSION["phoneno"];
+		$user = $_SESSION["user"];
+	}
+	else
+	{
+		redirect("index.php?error_msg=Plese%20Log%20In%20first.");
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,36 +63,27 @@
 	<br/>
 	<div id="categories">
 	<?php 
-	session_start();
-	if(!($u= $_SESSION["user"]))
-		header("location:index.php?Please%20Login");
 	$cat = $_GET['cat'];
-	//echo $cat;
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db="Mmi";
-	$conn = mysqli_connect($servername, $username,$password,$db);
-	$query="Select * from SubCat where ParCatId='$cat'";
-	$res=mysqli_query($conn,$query);
-	$count = mysqli_num_rows($res);
-	for($i=0; $i<$count; $i++)
+	$query = "Select * from SubCat where ParCatId = '$cat'";
+	$res = mysqli_query($conn, $query);
+	($res ? $count = mysqli_num_rows($res): $count = 0);
+	for($i=0; $i < $count; $i++)
 	{
 		?>
 		<div class="subcategory-block">
 			<?php 
 			$data = mysqli_fetch_row($res);
 			echo strtoupper($data[2]);
-			$query="select Name, C.CompId from Cat_Comp CC, Company C where C.CompId=CC.CompId and SCat_Id='$data[1]'";
-			$res2=mysqli_query($conn,$query);
-			$cnt2=mysqli_num_rows($res2);
+			$query = "Select Name, C.CompId from Cat_Comp CC, Company C where C.CompId = CC.CompId and SCat_Id = '$data[1]'";
+			$res2 = mysqli_query($conn, $query);
+			$cnt2 = mysqli_num_rows($res2);
 			?>
 			<form action="submit.php" method="get">
-				<input type="hidden" name="scat" value="<?php echo $data[1]; ?>">
+				<input type="hidden" name="scat" value="<?php echo $data[1]; ?>" >
 				<?php
-				for($j=0;$j<$cnt2;$j++)
+				for($j=0;$j < $cnt2; $j++)
 				{
-					$rowd=mysqli_fetch_row($res2);
+					$rowd = mysqli_fetch_row($res2);
 					echo "<input type=checkbox name=Company[] value=$rowd[1] />&nbsp;".$rowd[0]."       ";
 				?>
 				<span id="extra-stuff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Low <input type="radio" name="<?php echo $rowd[1]."priority" ?>" value=0 required />

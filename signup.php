@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	require_once("db_connection.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,18 +34,11 @@
 	}
 	else
 	{
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$db="Mmi";
-		$conn = mysqli_connect($servername, $username,$password, $db);
-		$phoneno=strval($_POST['phoneno']);
-		$phoneno=mysqli_real_escape_string($conn,$phoneno);
-		$query="Select * from Users where PhoneNo='$phoneno'";
-		$res=mysqli_query($conn,$query);
-		$data=mysqli_fetch_row($res);
-		
-		if(!empty($data))
+		$phoneno = mysqli_real_escape_string($conn, strval($_POST['phoneno']));
+		$query = "Select * from Users where PhoneNo = $phoneno";
+		$res = mysqli_query($conn, $query);
+		($res ? $count = mysqli_num_rows($res): $count = 0);
+		if($count == 1)
 		{
 			echo "<p id='heading'>An account already exists with the specified Phone Number.<br/>Please click <a href='index.php'>here</a> to login.</p>";
 		}
@@ -57,7 +54,7 @@
 							
 							<input class="inputfield" disabled value='<?php echo "$phoneno" ?>' />
 							
-							<input class="inputfield" type="text" name="nam" placeholder="Name" maxlength=60 required />
+							<input class="inputfield" type="text" name="name" placeholder="Name" maxlength=60 required />
 							
 							<input class="inputfield" type="text" name="address" maxlength=235 placeholder="Address" required />
 						

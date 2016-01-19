@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	require_once("db_connection.php");
+?>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html" accept-charset="utf-8" />
@@ -11,21 +15,12 @@
 
 	<?php include 'top_bar.php'; ?>
 	<?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db="Mmi";
-	$conn = mysqli_connect($servername, $username, $password, $db);
 	$phoneno=strval($_POST['phoneno']);
 	$phoneno=mysqli_real_escape_string($conn,$phoneno);
-	$nam = $_POST['nam'];
-	$nam=mysqli_real_escape_string($conn,$nam);
-	$address = $_POST['address'];
-	$address=mysqli_real_escape_string($conn,$address);
+	$name = mysqli_real_escape_string($conn, $_POST['name']);
+	$address = mysqli_real_escape_string($conn, $_POST['address']);
 	$password = $_POST['password'];
-	$password=mysqli_real_escape_string($conn,$password);
 	$confirm_password = $_POST['confirm_password'];
-	$confirm_password=mysqli_real_escape_string($conn,$confirm_password);
 	
 	if ($password != $confirm_password)
 	{
@@ -33,7 +28,8 @@
 	}
 	else
 	{
-		$query = "Insert into users values ($phoneno, '$address', '$password', '$nam')";
+		$pass = password_hash($password, PASSWORD_BCRYPT);
+		$query = "Insert into users values ($phoneno, '$address', '$pass', '$name')";
 		$res = mysqli_query($conn, $query);
 		if (empty($res))
 		{

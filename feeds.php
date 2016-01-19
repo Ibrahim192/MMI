@@ -1,3 +1,17 @@
+<?php
+	session_start();
+	require_once("db_connection.php");
+	require_once("functions.php");
+	if (isset($_SESSION["phoneno"]))
+	{
+		$phoneno = $_SESSION["phoneno"];
+		$user = $_SESSION["user"];
+	}
+	else
+	{
+		redirect("index.php?error_msg=Plese%20Log%20In%20first.");
+	}
+?>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html" accept-charset="utf-8" />
@@ -31,7 +45,7 @@
 #time
 {
 	margin: 8px 0px 0px 0px;
-		padding:10px;
+	padding:10px;
 	background-color:#ecffe5;
 	border: 2px solid #2196F3;
 	width: 50%;
@@ -69,31 +83,20 @@
 	</ul>
 <div id="heading">Your Message Feeds:</div>
 <?php
-	session_start();
-	if(!$_SESSION["user"])
-		header("location:index.php");
-	$su=$_SESSION["user"];
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db="Mmi";
-	$conn = mysqli_connect($servername, $username,$password,$db);
-	$query="Select CompId,CatId,Time,Message from List where PhoneNo='$su'";
-	$r=mysqli_query($conn,$query);
-	$cnt1=mysqli_num_rows($r);
+	$query = "Select CompId, CatId, Time, Message from List where PhoneNo = $phoneno";
+	$res = mysqli_query($conn, $query);
+	($res ? $count = mysqli_num_rows($res): $count = 0);
 	$i=0;
-	while($i<$cnt1)
+	for($i=0; $i < $count; $i++)
 	{
-		$data=mysqli_fetch_row($r);
-		$query1="Select Name from Company where CompId='$data[0]'";
-		$query2="Select Name from SubCat where SubCat_id='$data[1]'";
-		$fetch1=mysqli_query($conn,$query1);
-		$fetch2=mysqli_query($conn,$query2);
-		$d1=mysqli_fetch_row($fetch1);
-		$d2=mysqli_fetch_row($fetch2);
+		$data = mysqli_fetch_row($res);
+		$query1 = "Select Name from Company where CompId='$data[0]'";
+		$query2 = "Select Name from SubCat where SubCat_id='$data[1]'";
+		$fetch1 = mysqli_query($conn, $query1);
+		$fetch2 = mysqli_query($conn, $query2);
+		$d1 = mysqli_fetch_row($fetch1);
+		$d2 = mysqli_fetch_row($fetch2);
 		echo "<div><div id=scat>".$d2[0]."</div><div id=comp>".$d1[0]."</div><div id=time>".$data[2]."</div><div id=Message>".$data[3]."</div></div>";
-		$i=$i+1;
-		
 	}
 	echo "</table>";
 ?>

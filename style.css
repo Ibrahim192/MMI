@@ -20,7 +20,7 @@ body {
 }
 
 #heading {
-	 font-size: 2em;
+	 font-size: 1.5em;
 	 margin-top: 40px;
 	 text-align: center;
 	 text-decoration: underline;
@@ -99,7 +99,7 @@ th
 {
 	text-align: center;
 	color: grey;
-	font-size: 2.5em;
+	font-size: 1.7em;
 	font-style: italic;
 }
 
@@ -136,7 +136,7 @@ th
 
 .subs-lim
 {
-	margin-top: -50px;
+	margin-top: -45px;
 	float: right;
 	font-size: 1.4em;
 }
@@ -190,5 +190,4 @@ th
 .active
 {
 	background-color: #4CAF50;
-	border-bottom: 5px solid #333;
 }

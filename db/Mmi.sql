@@ -189,7 +189,9 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (7259856058,'Bangalore','Ibrahim','Ibrahim'),(7411476831,'Haryan','Mandeep','Mandeep'),(7259166120,'Mumbai','Nandy','Nandy');
+/* Removed the sql queries for adding users directly to db.
+Users now need to "sign up" from the page signup.php since they will be alloted an 
+encrypted password on signup, which can't be given as a direct sql insert command. */
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 

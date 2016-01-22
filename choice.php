@@ -79,13 +79,15 @@
 			$res2 = mysqli_query($conn, $query);
 			$cnt2 = mysqli_num_rows($res2);
 			?>
-			<form action="submit.php" method="get">
-				<input type="hidden" name="scat" value="<?php echo $data[1]; ?>" >
+			
 				<?php
 				
 				for($j=0;$j < $cnt2; $j++)
 				{
-					
+					?>
+					<form action="submit.php" method="get">
+				<input type="hidden" name="scat" value="<?php echo $data[1]; ?>" >
+				<?php
 					$rowd = mysqli_fetch_row($res2);
 					$query="Select * from Subscribers where PhoneNo='$phoneno' and CompId='$rowd[1]' and CatId='$data[1]'";
 					$res3=mysqli_query($conn,$query);
@@ -110,17 +112,18 @@
 				if($cnt3>0)
 				{
 						echo "<input type=hidden name=test value=0>";
-						echo "<input type=submit value=Update!/><br/>";
+						echo "<input type=submit value='Update!'/><br/>";
 				}
 					else
 					{
 						echo "<input type=hidden name=test value=1>";
-						echo "<input type=submit value=Subscribe!/><br/>";
+						echo "<input type=submit value='Subscribe!'/><br/>";
 					}
+				echo "</form>";
 				}		
 				?>
 				
-			</form>
+			
 		
 		</div>
 	<?php

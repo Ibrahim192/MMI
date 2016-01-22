@@ -11,6 +11,19 @@
 	{
 		redirect("index.php?error_msg=Plese%20Log%20In%20first.");
 	}
+	if (isset($_POST["submit"]))
+	{
+		$compid = $_POST["compid"];
+		$catid = $_POST["catid"];
+		$compname = $_POST["compname"];
+		$catname = $_POST["catname"];
+		$unsubs_query = "DELETE FROM subscribers WHERE phoneno=$phoneno AND compid=$compid AND catid=$catid";
+		$unsubs_result = mysqli_query($conn, $unsubs_query);
+		if (!$unsubs_result)
+			echo "<p id='heading'>There was some problem while unsubscribing.<br/>Please try again.</p>";
+		else
+			$_SESSION["unsubs_msg"] = "You have successfully been <b>UNSUBSCRIBED</b> from <b>".strtoupper($compname)."</b> for <b>".strtoupper($catname)."<br/>";
+	}
 ?>
 <html>
 <head>
@@ -21,14 +34,6 @@
 <style type="text/css">
 
 </style>
-<script type="text/javascript">
-function redirect($catid)
-{
-	alert("going away");
-    window.location="unsubs.php?catid=$catid";
-}
-
-</script>
 </head>
 
 <body>
@@ -46,6 +51,16 @@ function redirect($catid)
 		Here are the services that you have Subscribed for
 	</div>
 	
+	<p id="heading">
+	<?php
+		if (isset($_SESSION["unsubs_msg"]))
+		{
+			echo "<p id='heading'>".$_SESSION["unsubs_msg"]." </p>";
+			$_SESSION["unsubs_msg"] = null;
+		}
+	?>
+	</p>
+	
 	<div class="main-content">
 		<?php
 		$query = "Select * from Subscribers where PhoneNo = $phoneno";
@@ -62,7 +77,7 @@ function redirect($catid)
 				$query="Select Name from Company where CompId = '$row[1]'";
 				$company = mysqli_query($conn, $query);
 				$company_res = mysqli_fetch_row($company);
-				$query="Select Name from SubCat where SubCat_id = '$row[2]'";
+				$query = "Select Name from SubCat where SubCat_id = '$row[2]'";
 				$category = mysqli_query($conn, $query);
 				$category_result = mysqli_fetch_row($category);
 				$priority = "";
@@ -85,7 +100,13 @@ function redirect($catid)
 					<div class="subs-priority"><?php echo "$priority" ?></div>
 					<div class="subs-category"><?php echo "$category_result[0]" ?></div>
 					<div class="subs-lim"><?php echo $row[5]-$row[4]."/$row[5]&nbsp; Msg Sent" ?></div>
-					<input type="button" value="Unsubscribe!" class="subs-unsubscribe" onclick="redirect($res[2])" />
+					<form method="POST" action="subscribed.php">
+						<input type="hidden" name="compid" value="<?php echo $row[1]; ?>" />
+						<input type="hidden" name="catid" value="<?php echo $row[2]; ?>" />
+						<input type="hidden" name="compname" value="<?php echo $company_res[0]; ?>" />
+						<input type="hidden" name="catname" value="<?php echo $category_result[0]; ?>" />
+						<input type="submit" name="submit" value="Unsubscribe!" class="subs-unsubscribe" />
+					</form>
 				</div>
 			<?php
 			}

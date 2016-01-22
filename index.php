@@ -11,7 +11,7 @@
 		// submit button was clicked
 		$phoneno = mysqli_real_escape_string($conn, strval($_POST['phoneno']));
 		$password = $_POST["password"];
-		$query = "SELECT * FROM users WHERE phoneno = $phoneno";
+		$query = "SELECT * FROM Users WHERE PhoneNo = $phoneno";
 		$res = mysqli_query($conn, $query);
 		$user_present = mysqli_fetch_row($res);
 		if ($user_present)
@@ -73,7 +73,8 @@
 			</form>
 
 		</div>
-		<p class="bottom-text">Don't have an Account? Click <a href="signup.php">here</a> to Signup!</p>
+		<p class="bottom-text">Don't have an Account? Click <a href="signup.php">here</a> to Signup!<br><a href="forgot.php">Forgot Password?</a></p>
+		
 	</center>
 </body>
 </html>

@@ -32,5 +32,5 @@
 	&nbsp;&nbsp;&nbsp;&nbsp; <span class='label-text'>Medium </span> <input type="radio" name="priority" value=1 />
 	&nbsp;&nbsp;&nbsp;&nbsp;<span class='label-text'>High</span> <input type="radio" name="priority" value=2 />
 	<br/><br/><br/>
-	<input style="padding:10px;" type="submit" value = "Send Message!" />
+	<input class="submit-button" type="submit" value = "Send Message!" />
 </form>

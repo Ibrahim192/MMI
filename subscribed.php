@@ -51,15 +51,13 @@
 		Here are the services that you have Subscribed for
 	</div>
 	
-	<p id="heading">
 	<?php
 		if (isset($_SESSION["unsubs_msg"]))
 		{
-			echo "<p id='heading'>".$_SESSION["unsubs_msg"]." </p>";
+			echo "<p class='big-text'>".$_SESSION["unsubs_msg"]." </p>";
 			$_SESSION["unsubs_msg"] = null;
 		}
 	?>
-	</p>
 	
 	<div class="main-content">
 		<?php
@@ -94,7 +92,7 @@
 						break;
 				}
 				?>
-				<div class="subscribe">
+		<div class="subscribe">
 				
 					<div class="subs-company"><?php echo "$company_res[0]" ?></div>
 					<div class="subs-priority"><?php echo "$priority" ?></div>

@@ -12,6 +12,35 @@ body {
 	width: 100%;
 }
 
+#categories {
+	clear: both;
+	margin-top: 30px;
+	border: 2px solid red;
+	width: 96%;
+	margin-left: 2%;
+	height: 900px;
+}
+
+.subcategory-block{
+	border: 2px solid #2196F3;
+	width: 95%;
+	float: left;
+	margin: 2%;
+	position: relative;
+	padding-top: 5%;
+	padding-bottom: 4%;
+	text-align: center;
+	font-size: 2.3em;
+	font-weight: bold;
+	color: #2196F3;
+}
+
+#extra-stuff {
+	font-size: 0.6em;
+	color: black;
+	display: inline;
+}
+
 #top-text
 {
 	padding-top:30px;
@@ -68,6 +97,14 @@ body {
 	font-size: 1em;
 	text-align: center;
 	margin: 0px 10px;
+	padding: 3px;
+}
+
+.big-text
+{
+	font-size: 1.3em;
+	text-align: center;
+	margin: 25px 10px 10px 10px;
 	padding: 3px;
 }
 
@@ -190,4 +227,10 @@ th
 .active
 {
 	background-color: #4CAF50;
+}
+
+.submit-button
+{
+	padding: 7px 10px;
+	font-weight: bold;
 }

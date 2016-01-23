@@ -64,7 +64,8 @@
 					<?php
 					$data = mysqli_fetch_row($res);
 					?>
-					<a href="<?php echo 'choice.php?cat='.$data[0];?>"> <?php echo $data[0]." : ".$data[1];?> </a>
+					
+					<a href="<?php echo 'choice.php?parent_id='.$data[0];?>"> <?php echo $data[0]." : ".$data[1];?> </a>
 				</div>
 			<?php }?>
 		<?php } else {

@@ -21,52 +21,33 @@
 <style type="text/css">
 #scat
 {
-	margin: 8px 0px 16px 16px;
 	background-color:#fffaf2;
 	border: 2px solid #2196F3;
-	padding:2%;
 	width: 8%;
-	float: left;
 	color: orange;
-	height:6%;
 	text-align:center;
 }
 #comp
 {
-	margin: 8px 0px 0px 0px;
-	padding:10px;
 	background-color: #ffe5e5;
 	border: 2px solid #2196F3;
-	width: 20%;
-	float: left;
 	color: red;
-	height:2.9%;
 }
 #time
 {
-	margin: 8px 0px 0px 0px;
-	padding:10px;
 	background-color:#ecffe5;
 	border: 2px solid #2196F3;
 	width: 50%;
-	padding-right:2px;
 	text-align: right;
-	float: left;
 	color: green;
-	height:2.9%;
 }
 #Message
 {
-	margin: 0px 0px 16px 0px;
+
 	background-color:#ebf0fa;
-	padding-top:4px;
-	padding-left:6px;
 	border: 2px solid #2196F3;
-	width: 72.3%;
 	text-align: left;
-	float: left;
 	color: black;
-	height:6.65%;
 }
 </style>
 </head>
@@ -79,6 +60,7 @@
 		<li><a href="subscribed.php">Home</a></li>
 		<li><a href="categories.php">New Services</a></li>
 		<li><a class="active" href="feeds.php">Message Feeds</a></li>
+		<li><a href="accounts.php">Accounts</a></li>
 		<li><a class="last-link" href="logout.php">Logout!</a></li>
 	</ul>
 <div id="heading">Your Message Feeds:</div>
@@ -96,9 +78,9 @@
 		$fetch2 = mysqli_query($conn, $query2);
 		$d1 = mysqli_fetch_row($fetch1);
 		$d2 = mysqli_fetch_row($fetch2);
-		echo "<div><div id=scat>".$d2[0]."</div><div id=comp>".$d1[0]."</div><div id=time>".$data[2]."</div><div id=Message>".$data[3]."</div></div>";
+		echo "<table border=1 align='center' style='border-collapse:collapse;width:80%;'>";
+		echo "<tr><td id='scat'>".$d2[0]."</td><td id='comp'> ".$d1[0]."</td><td id='time'> ".$data[2]."</td></tr><td colspan=3 id='Message'> ".$data[3]."</td></tr></table></br>";
 	}
-	echo "</table>";
 ?>
 </body>
 </html>

@@ -17,7 +17,7 @@
 		$catid = $_POST["catid"];
 		$compname = $_POST["compname"];
 		$catname = $_POST["catname"];
-		$unsubs_query = "DELETE FROM subscribers WHERE phoneno=$phoneno AND compid=$compid AND catid=$catid";
+		$unsubs_query = "DELETE FROM Subscribers WHERE PhoneNo=$phoneno AND CompId=$compid AND CatId=$catid";
 		$unsubs_result = mysqli_query($conn, $unsubs_query);
 		if (!$unsubs_result)
 			echo "<p id='heading'>There was some problem while unsubscribing.<br/>Please try again.</p>";
@@ -44,6 +44,7 @@
 		<li><a class="active" href="subscribed.php">Home</a></li>
 		<li><a href="categories.php">New Services</a></li>
 		<li><a href="feeds.php">Message Feeds</a></li>
+		<li><a href="accounts.php">Accounts</a></li>
 		<li><a class="last-link" href="logout.php">Logout!</a></li>
 	</ul>
 	

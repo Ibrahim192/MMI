@@ -64,32 +64,32 @@
 		$parent_id = $_GET['parent_id'];
 	else
 		$parent_id = $_POST['parent_id'];
+	//To fetch SubCategories of Main Caterory
 	$query = "Select * from SubCat where ParCatId = '$parent_id'";
 	$res = mysqli_query($conn, $query);
 	($res ? $count = mysqli_num_rows($res): $count = 0);
-	//$pquery=mysqli_prepare($conn,"Select * from Subscribers where PhoneNo='$phoneno' and CompId=? and CatId=?");
+	//Fetch SubCategories one after other if present
 	for($i=0; $i < $count; $i++)
 	{
 		?>
 		<div class="subcategory-block">
 			<?php 
 			$data = mysqli_fetch_row($res);
-			echo strtoupper($data[2]);
+			echo strtoupper($data[2]);//To display SubCategory Name
 			$query = "Select Name, C.CompId from Cat_Comp CC, Company C where C.CompId = CC.CompId and SCat_Id = '$data[1]'";
 			$res2 = mysqli_query($conn, $query);
 			$cnt2 = mysqli_num_rows($res2);
-			
+			//List out companies providing services for a subcategory
 			for($j=0; $j < $cnt2; $j++)
 			{
 			?>
 			<form action="choice.php" method="post" >
 				<?php
 					$rowd = mysqli_fetch_row($res2);
+					//Fetch only subscribed company's messages
 					$query = "Select * from Subscribers where PhoneNo='$phoneno' and CompId='$rowd[1]' and CatId='$data[1]'";
 					$res3 = mysqli_query($conn, $query);
 					$cnt3 = mysqli_num_rows($res3);
-					
-					//mysqli_stmt_bind_param($pquery,"ii",$rowd[1],$data[1]);
 					echo $rowd[0]."       ";
 				?>
 				<span id="extra-stuff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -99,27 +99,23 @@
 
 				Enter Limit: <input style="width:50px" type="number" min=0 name="lim" value=5 required />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</span>
+				<!--sending data for subscription-->
 				<input type="hidden" name="compid" value="<?php echo $rowd[1] ?>" />
 				<input type="hidden" name="compname" value="<?php echo $rowd[0] ?>" />
 				<input type="hidden" name="catid" value="<?php echo $data[1] ?>" />
 				<input type="hidden" name="catname" value="<?php echo $data[2] ?>" />
 				<input type="hidden" name="parent_id" value="<?php echo $parent_id ?>" />
 				<?php
-				//mysqli_stmt_execute($pquery);
-				/*	if(mysqli_stmt_fetch($pquery))
-						echo "<input type=hidden name=test value=1>";
-					else
-						echo "<input type=hidden name=test value=0>";*/
-				if($cnt3>0)
-				{
+					if($cnt3>0)
+					{
 				?>
-						<input class="submit-button" type="submit" name="submit" value="Update!" /><br/>
+				<input class="submit-button" type="submit" name="submit" value="Update!" /><br/>
 				<?php
 				}
 				else
 				{
 					?>
-					<input class="submit-button" type="submit" name="submit" value="Subscribe!"/><br/>
+				<input class="submit-button" type="submit" name="submit" value="Subscribe!"/><br/>
 				<?php
 				} ?>
 			</form>

@@ -13,21 +13,24 @@ function random_str($length)
     		 }
     		return $str;
 	}
-
-    // 'From' doesn't matter; For transactional, this will be replaced with your SenderId;
-    // For promotional, this will be ignored by the SMS gateway
-$From=$_POST["From"];
-$To=$_POST["To"];
-if(isset($_POST["otp"]))
+if(isset($_GET["From"]))
+	$From=$_GET["From"];
+else
+	$From=$_POST["From"];
+if(isset($_GET["To"]))
+	$To=$_GET["To"];
+else
+	$To=$_POST["To"];
+if(isset($_GET["otp"]))
 {
 	$Body=random_str(4);
 }
 else
-$Body=$_POST["Body"];
+{ $catname=$_POST["scat"];$Body=$From." ".$catname." ".$_POST["Body"];}
     //Incase you are wondering who Dr. Rajasekhar is http://en.wikipedia.org/wiki/Dr._Rajasekhar_(actor)
 $post_data=array('From'=>$From,'To'=>$To,'Body'=>$Body);
-$exotel_sid = "xxxx"; // Your Exotel SID - Get it from here: http://my.exotel.in/Exotel/settings/site#api-settings
-$exotel_token = "xxxx"; // Your exotel token - Get it from here: http://my.exotel.in/Exotel/settings/site#api-settings
+$exotel_sid = "xxx"; // Your Exotel SID - Get it from here: http://my.exotel.in/Exotel/settings/site#api-settings
+$exotel_token = "xxx"; // Your exotel token - Get it from here: http://my.exotel.in/Exotel/settings/site#api-settings
  
 $url = "https://".$exotel_sid.":".$exotel_token."@twilix.exotel.in/v1/Accounts/".$exotel_sid."/Sms/send";
  

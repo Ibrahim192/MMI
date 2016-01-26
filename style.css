@@ -213,8 +213,22 @@ th
 	color: white;
     border-right: 1px solid #bbb;
 }
+#comp 
+{
+	display: block;
+	text-align: center;
+	margin: 0px;
+	color: red;
+	background-color:#a2ffff;
+    border-right: 1px solid #bbb;
+	font-size:25px;
+}
 
 .top_nav li a:hover
+{
+	background-color: #111;
+}
+a:hover
 {
 	background-color: #111;
 }

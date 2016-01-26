@@ -34,6 +34,9 @@
 	}
 	else
 	{
+		//after having entered phoneno, verification!!
+		$phone=$_POST['phoneno'];
+		$str="From=Admin&otp=1&To=".$phone;
 		$phoneno = mysqli_real_escape_string($conn, strval($_POST['phoneno']));
 		$query = "Select * from Users where PhoneNo = $phoneno";
 		$res = mysqli_query($conn, $query);
@@ -44,29 +47,38 @@
 		}
 		else
 		{?>
-			<center>
-				<div class="logintab logintab-signup2">
+			<script>
+				//timer for otp
+				function timer()
+				{
+ 					window.location.assign("index.php?err_msg=TIMEOUT");
+				}
+				//code to process response after otp has been sen
+				var mes=<?php echo json_encode($str); ?>;
+				var xhr=new XMLHttpRequest();
+				setTimeout(timer,600000);
+				xhr.onreadystatechange=function()
+				{
 
-					<div class="logintop">User Signup</div>
-					<form method="POST" action="signup2.php">
+					if(xhr.readyState==4&&xhr.status==200)
+					{
+																	
+						var  parser, xmlDoc;
+						var res=xhr.responseText;
+						parser = new DOMParser();
+						xmlDoc = parser.parseFromString(res,"text/xml");
+						var ab=xmlDoc.getElementsByTagName("SMSMessage");
+						var Body=xmlDoc.getElementsByTagName("Body")[0].childNodes[0].nodeValue; // For otp
+						var To=xmlDoc.getElementsByTagName("To")[0].childNodes[0].nodeValue; // Sender
+						var xyz="<center><form action='verify.php' method=post>Enter OTP within 10 minutes :<input type=text name=otp><br><input type=hidden name=orig value="+Body+"><input type=hidden name=phoneno value="+To+"><input type=submit value='submit'></form></center>";// code for form to enter otp 
+						document.getElementById("demo").innerHTML=xyz;
+		}
 
-							<input class="inputfield" type="hidden" name="phoneno" value="<?php echo "$phoneno"; ?>" required />
-							
-							<input class="inputfield" disabled value='<?php echo "$phoneno" ?>' />
-							
-							<input class="inputfield" type="text" name="name" placeholder="Name" maxlength=60 required />
-							
-							<input class="inputfield" type="text" name="address" maxlength=235 placeholder="Address" required />
-						
-							<input class="inputfield" type="password" placeholder="Enter Password" maxlength=63 name="password" required />
-							
-							<input class="inputfield" type="password" placeholder="Confirm Password" maxlength=63 name="confirm_password" required />
-						
-							<input class="loginbutton" type="submit" value="Create Account!" /> <br/><br/>
-						
-					</form>
-				</div>
-			</center>		
+	};
+  	xhr.open("GET","return.php?"+mes, true);
+  	xhr.send();
+			</script>
+			<p id="demo"><!-- otp form code here!! passed to verify.php for verification--></p>		
 		<?php
 		}
 	} ?>

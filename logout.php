@@ -1,7 +1,13 @@
 <?php
 	session_start();
+	require_once("db_connection.php");
+	require_once("functions.php");
+	if(isset($_SESSION["cid"]))
+		$str="xcompanies.php";
+	else
+		$str="index.php";
 	session_unset();
 	session_destroy();
-	header("Location: index.php");
+	redirect($str);
 	exit;
 ?>

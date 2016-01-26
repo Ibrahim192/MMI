@@ -15,10 +15,12 @@
 
 	<?php include 'top_bar.php'; ?>
 	<?php
-	$phoneno=strval($_POST['phoneno']);
-	$phoneno=mysqli_real_escape_string($conn,$phoneno);
+	$phone=strval($_POST['phone']);
+	$phone=mysqli_real_escape_string($conn,$phone);
 	$name = mysqli_real_escape_string($conn, $_POST['name']);
 	$address = mysqli_real_escape_string($conn, $_POST['address']);
+	$dob=$_POST["Year"]."-".$_POST["Month"]."-".$_POST["Day"];
+	$mail=$_POST["Mail"];
 	$password = $_POST['password'];
 	$confirm_password = $_POST['confirm_password'];
 	
@@ -29,7 +31,7 @@
 	else
 	{
 		$pass = password_hash($password, PASSWORD_BCRYPT);
-		$query = "Insert into users values ($phoneno, '$address', '$pass', '$name')";
+		$query = "Insert into Users values ($phone, '$address', '$pass', '$name','$dob','$mail')";
 		$res = mysqli_query($conn, $query);
 		if (empty($res))
 		{

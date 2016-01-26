@@ -53,8 +53,8 @@
 </head>
 
 <body>
-<?php
-	include 'top_bar.php';
+	<?php
+		include 'top_bar.php';
 	?>
 	<ul class="top_nav">
 		<li><a href="subscribed.php">Home</a></li>
@@ -63,7 +63,7 @@
 		<li><a href="accounts.php">Accounts</a></li>
 		<li><a class="last-link" href="logout.php">Logout!</a></li>
 	</ul>
-<div id="heading">Your Message Feeds:</div>
+	<div id="heading">Your Message Feeds:</div>
 <?php
 	$query = "Select CompId, CatId, Time, Message from List where PhoneNo = $phoneno";
 	$res = mysqli_query($conn, $query);

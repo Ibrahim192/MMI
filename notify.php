@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	require_once("db_connection.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,25 +22,26 @@ border:2;
 </head>
 <body>
 	<?php include 'top_bar.php' ?>
+		<center><a href="companies.php" id='comp'>Home</a>
+		<a href="logout.php" id='comp'>LogOut</a></center>
 	<?php
 		$cid = $_POST['cid'];
-		$catid = $_POST['from'];
+		$catid = $_POST['catid'];
 		$priority = $_POST['priority'];
 		$msg=$_POST['msg'];
-		$username = "root";
-		$password = "";
-		$servername = "localhost";
-		$db="Mmi";
-		$conn = mysqli_connect($servername, $username, $password,$db);
-		$query="insert into Notification(CatId,Message,Priority,CompId,Time) values('$catid','$msg','$priority','$cid',now())";
-		$res=mysqli_query($conn,$query);
+		//Select the receivers/end users
 		$query="Select s.PhoneNo from Subscribers s where '$catid' = s.CatId and '$cid'= s.CompId and $priority>=s.Priority and currlim>0";
 		$res1 = mysqli_query($conn,$query);
 		$count=mysqli_num_rows($res1);
-		$query="select * from Company where CompId='$cid'";
-		$res2=mysqli_query($conn,$query);
-		$data2=mysqli_fetch_row($res2);
-		$cname=$data2[1];
+		if($count>0)
+		{
+			$query="select * from Company where CompId='$cid'";
+			$res2=mysqli_query($conn,$query);
+			$data2=mysqli_fetch_row($res2);
+			$cname=$data2[1];
+			$query="Select Name from SubCat where SubCat_id='$catid'";
+			$res3=mysqli_query($conn,$query);
+			$data3=mysqli_fetch_row($res3);
 	?>
 	<p id="demo"></p>
 	<center>
@@ -45,9 +50,11 @@ border:2;
 		Message :<span id="Msg"> <?php echo $msg;?></span><br/>
 		Priority :<span id="Msg"><?php  if($priority=='0') echo "Low"; else if($priority=='1') echo "Moderate"; else echo"High";?></span>
 		Receiver :<span id="Msg"> 
-		<form id="msg_form"  method="post" onsubmit="return abc(this)">
-			<input type="hidden" name="From" id="From" value="<?php echo $cname?>"></input><br/>
+		<form id="msg_form"  method="post" onsubmit="return pushmsg(this)">
+			<input type="hidden" name="From" id="From" value="<?php echo $cname;?>"></input><br/>
+			<input type="hidden" name="scat" id="scat" value="<?php echo $data3[0]?>"></input><br/>
 			<?php 
+			//display the list of receivers
 			for($i=0;$i<$count;$i++)
 			{
 				$data = mysqli_fetch_row($res1);
@@ -63,12 +70,17 @@ border:2;
 		</span>
 	</div>
 	</center>
+	<?php } 
+		echo "<center><span id='main_message'>No Subscribers!! :(</span></center>";
+	?>
 <script>
-function abc(ofe)
+function pushmsg(ofe)
 {
+	//ajax code to send the data to return.php which sends to ends users through exotel api
 	var xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function()
 	{
+		//response after submission of message
 		if(xhr.readyState==4&&xhr.status==200)
 		{
 			var res=xhr.responseText;
@@ -78,12 +90,15 @@ function abc(ofe)
 			var abc=xmlDoc.getElementsByTagName("SMSMessage");
 			var To,Status,Body,DC,n='';
 			var disp="<style>table{border-color:red;color:blue;border-collapse:collapse;margin-left:10px;}th,td{padding:15px;}</style>";
+			//If messages were sent!
 			if(abc.length>0)
 			{
-				var aaa=<?php
-		
+				<?php
+		$query="insert into Notification(CatId,Message,Priority,CompId,Time) values('$catid','$msg','$priority','$cid',now())";
+		$res=mysqli_query($conn,$query);
 	 $query="Update Subscribers set currlim=currlim-1 where '$catid' = CatId and '$cid'= CompId and $priority>=Priority and currlim>0"; mysqli_query($conn,$query);?> 
 				disp+="<center><table border=1 ><tr><th>To</th><th>Date Created</th><th>Message</th><th>Status</th></tr>";
+				//fetch the receivers and data from response 
 				for(i=0;i<abc.length;i++)
 				{
 					To=xmlDoc.getElementsByTagName("To")[i].childNodes[0].nodeValue;
@@ -95,7 +110,7 @@ function abc(ofe)
 			}
 			else
 			{
-
+				//Failure to send message
 				disp+="<center><table border=1 ><tr><th>Message</th><th>Status</th></tr>";
 				var abc=xmlDoc.getElementsByTagName("RestException");
 				for(i=0;i<abc.length;i++)
@@ -106,7 +121,7 @@ function abc(ofe)
 				}
 			}
 			disp+="</table></center>";
-			document.getElementById("rem").remove();
+			document.getElementById("rem").remove();//remove the send message button form
 			document.getElementById("demo").innerHTML=disp;
 		}
 	};
